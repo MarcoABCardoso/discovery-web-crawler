@@ -1,0 +1,32 @@
+{
+  "name": "discovery-web-crawler",
+  "version": "1.0.0",
+  "description": "Crawls a website and populates a Watson Discovery Collection.",
+  "main": "lib/index.js",
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "test": "jest --collectCoverage",
+    "lint": "eslint"
+  },
+  "keywords": [
+    "Watson",
+    "Watson Discovery",
+    "Crawler",
+    "Web Crawler",
+    "Scraper"
+  ],
+  "author": "macardoso95@gmail.com",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarcoABCardoso/discovery-web-crawler"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "ibm-watson": "^6.0.3",
+    "simplecrawler": "^1.1.9"
+  }
+}

@@ -1,0 +1,6 @@
+.vscode
+.github
+node_modules
+coverage
+.DS_Store
+test
