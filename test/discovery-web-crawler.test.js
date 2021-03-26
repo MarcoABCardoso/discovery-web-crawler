@@ -11,12 +11,12 @@ let discoveryMock = {
 let getSimpleCrawlerMock = () => ({
     stopped: false,
     stop: () => this.stopped = true,
-    start: () => {
+    start: async () => {
         let urls = ['foo_url', 'foo_url/target_path', 'foo_url/target_path/subpath_1', 'foo_url/target_path/subpath_2', 'foo_url/other_path', 'foo_url/assets']
         for (let i = 0; i < urls.length; i++) {
             // if (this.stopped) break
             if (this.fetchCondition({ url: urls[i] }))
-                this.fetchcomplete({ url: urls[i] }, Buffer.from(`<head><title>Foo title ${i}</title><meta name="foo" content="bar"></head><main>Foo content ${i}</main>`))
+                await this.fetchcomplete({ url: urls[i] }, Buffer.from(`<head><title>Foo title ${i}</title><meta name="foo" content="bar"></head><main>Foo content ${i}</main>`))
         }
         this.complete()
     },
