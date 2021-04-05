@@ -4,12 +4,10 @@
  */
 
  import DiscoveryV1 from "ibm-watson/discovery/v1"
-import Crawler from "simplecrawler"
 
 declare class DiscoveryWebCrawler {
     constructor(options: DiscoveryWebCrawlerOptions)
     discoveryV1: DiscoveryV1
-    simpleCrawler: Crawler
     start(): Promise<void>
 }
 
@@ -26,11 +24,10 @@ interface DiscoveryWebCrawlerOptions {
     dryRun?: boolean
     verbose?: boolean
 
-    fetchCondition?: () => boolean
-    urlCondition?: () => boolean
-    contentCondition?: () => boolean
-    parse: ($) => Promise<object>
-    handleDocument: () => { }
+    fetchCondition?: (url: string) => boolean
+    urlCondition?: (url: string) => boolean
+    contentCondition?: (content: object) => boolean
+    parse: ($: JQueryStatic, url: string) => Promise<object>
 }
 
 

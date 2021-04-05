@@ -1,6 +1,6 @@
 {
   "name": "discovery-web-crawler",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Crawls a website and populates a Watson Discovery Collection.",
   "main": "lib/index.js",
   "devDependencies": {
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
-    "headless-chrome-crawler": "^1.8.0",
+    "headless-chrome-crawler-x": "^1.9.0",
     "ibm-watson": "^6.0.3"
   }
 }
