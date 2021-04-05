@@ -13,7 +13,7 @@ let getCrawlerMock = (crawlerOptions) => ({
         for (let i = 0; i < urls.length; i++) {
             if (crawlerOptions.preRequest({ url: urls[i] }))
                 try { crawlerOptions.evaluatePage() } catch (err) {/** This will fail because it's run in a browser */ }
-            if (i == 0) await crawlerOptions.onError(`Some error happened with url ${urls[i]}`)
+            if (i == 0) await crawlerOptions.onError(`Some error happened with url ${urls[i]} `)
             else await crawlerOptions.onSuccess({ response: { url: urls[i] }, result: { data: `<head><title>Foo title ${i}</title><meta name="foo" content="bar"></head><main>Foo content ${i}</main>` } })
         }
     },
@@ -22,7 +22,7 @@ let getCrawlerMock = (crawlerOptions) => ({
 })
 
 let options1 = {
-    createCrawler: getCrawlerMock,
+    createCrawler: options => getCrawlerMock(options),
     serviceUrl: 'foo_service_url',
     version: 'foo_version',
     apikey: 'foo_apikey',
@@ -36,7 +36,7 @@ let options1 = {
 }
 
 let options2 = {
-    createCrawler: getCrawlerMock,
+    createCrawler: options => getCrawlerMock(options),
     serviceUrl: 'foo_service_url',
     version: 'foo_version',
     apikey: 'foo_apikey',
@@ -69,7 +69,6 @@ describe('DiscoveryWebCrawler', () => {
             let crawler = new DiscoveryWebCrawler(options1)
             it('Executes crawling and logs documents', (done) => {
                 crawler.discoveryV1 = discoveryMock
-                crawler.simpleCrawler = getCrawlerMock()
                 crawler.start()
                     .catch(err => done.fail(err))
                     .then(() => {
@@ -82,7 +81,6 @@ describe('DiscoveryWebCrawler', () => {
             let crawler = new DiscoveryWebCrawler(options2)
             it('Executes crawling and indexes documents', (done) => {
                 crawler.discoveryV1 = discoveryMock
-                crawler.simpleCrawler = getCrawlerMock()
                 crawler.start()
                     .catch(err => done.fail(err))
                     .then(() => {
